@@ -108,7 +108,7 @@ Mavenを選択すると自動生成される設定ファイル。
 ## 　⚙　使用技術
 
 - Spring Boot 4.0.3
-- Thymeleaf
+- Thymeleaf -テンプレートエンジン
 - H2 Database
 - MyBatis
 - Spring Boot DevTools

@@ -92,6 +92,7 @@ Spring Initializrは、無料でアプリケーションの雛形を作成でき
 2. zipファイルをダウンロード
 3. 解凍する
 src/main/java
+
 &nbsp;&nbsp;&nbsp;&nbsp;└ 起動クラス（mainメソッドを持つクラス）このクラスはSpring Initializrによって自動生成される。  
 基本的には変更する必要はないです。
 ---

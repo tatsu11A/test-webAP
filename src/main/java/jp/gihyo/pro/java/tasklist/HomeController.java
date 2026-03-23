@@ -1,9 +1,9 @@
-package jp.gihyo.pro.java.tasklist.controller;
+package jp.gihyo.pro.java.tasklist;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-import jp.gihyo.pro.java.tasklist.entity.TaskListDao;
+import jp.gihyo.pro.java.tasklist.TaskListDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
-        public record TaskItem(String id, String task, String deadline, boolean done) {
+        record TaskItem(String id, String task, String deadline, boolean done) {
             // タスクアイテム情報を複数保持するレコードクラス
     }
     private List<TaskItem> taskItems = new ArrayList<>();

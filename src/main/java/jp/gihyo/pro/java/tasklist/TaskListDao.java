@@ -1,13 +1,12 @@
-package jp.gihyo.pro.java.tasklist.entity;
+package jp.gihyo.pro.java.tasklist;
 
-import jp.gihyo.pro.java.tasklist.controller.HomeController.TaskItem;
+import jp.gihyo.pro.java.tasklist.HomeController.TaskItem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

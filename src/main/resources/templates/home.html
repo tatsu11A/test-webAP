@@ -13,44 +13,73 @@
         <h1>タスク管理アプリケーション</h1>
 
         <div class ="task_form">
-            <!-- タスク登録用のフォーム箱-->
             <h2>タスクの登録</h2>
-
             <form action="/add">
-                <!-- タスク登録の送信先 -->
                 <label>タスク</label>
                 <input name="task" type="text" />
                 <label>期限</label>
                 <input name="deadline" type="date" />
                 <input type="submit" value="登録" />
-<!-- タスクの内容と期限を入力して登録ボタンを押すと、/addにリクエストが送られ、controllerのaddItemメソッドが呼び出される -->
             </form>
         </div>
 
         <div class ="taskList">
-            <!-- タスクリストの箱-->
             <h2>現在のタスク一覧</h2>
-            <table border="1" style="border-collapse: collapse;">
-            <!-- タスクの内容、期限、状態を表示するテーブルの見た目の制御 -->
-                <thead>
-                    <tr><th class="hidden">ID</th><th>タスク</th><th>期限</th><th>状態</th></tr>
-                </thead>
-                <tbody>
+        <table border="1" style="border-collapse: collapse;">
+            <thead>
+                <tr><th class="hidden">ID</th><th>タスク</th><th width="150">期限</th><th width="100">状態</th></tr>
+            </thead>
+
+            <tbody>
                     <tr th:each="task : ${TaskList}">
-                    <!--タスクの一覧　
-                    処理は、拡張for文のようなもので、TaskListから1つずつタスクを取り出して、taskという変数に入れている
-                    -->>
                         <td class ="hidden" th:text="${task.id}"></td>
-                        <!-- タスクのIDは表示しないため、hiddenクラスを付与している -->
                         <td th:text="${task.task}"></td>
-                        <!-- タスクの内容を表示 -->
                         <td th:text="${task.deadline}"></td>
-                        <!-- タスクの期限を表示 -->
                         <td th:text="${task.done} ? '完了' : '未完了'"></td>
-                        <!-- タスクの状態を表示。doneがtrueなら「完了」、falseなら「未完了」と表示 -->
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        <td width="50px">
+
+                        <button type="submit" id="update_button" 
+                            onclick="let row = this.PageTransitionEvent;
+                            getElementById('update_id').value = row.cells[0].firstChild.data;
+                            getElementById('update_task').value = row.cells[1].firstChild.data;
+                            getElementById('update_deadline').value = row.cells[2].firstChild.data;
+                            getElementById('update_status').selectedIndex = row.cells[3].firstChild.data === '完了' ? 1 : 0;
+                            var dialog = getElementById('updateDialog');
+                            dialog.style.left = ((window.innerWidth - 500) / 2) + 'px';
+                            dialog.style.display = 'block';">
+                            更新
+                        </button>
+                    </td>
+                    <td width="50px">
+                        <form action="/delete">
+                            <button type="submit" id="delete_button">削除</button>
+                            <input type="hidden" name="id" th:value="${task.id}" />
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</body>
+
+            <div id="updateDialog">
+                <div class="task_form">
+                    <h2>タスクの更新</h2>
+                        <form action="/update">
+                            <input type="hidden" name="id" id="update_id" />
+                            <label>タスク</label>
+                            <input name="task" type="text" id="update_task" />
+                            <label>期限</label>
+                            <input name="deadline" type="date" id="update_deadline" />
+                            <label>状態</label>
+                            <select name="done" id="update_done">
+                                <option value="false">未完了</option>
+                                <option value="true">完了</option>
+                            </select>
+                            <div>
+                                <button type="submit">更新</button>
+                                <button type="reset" onclick="getElementById('updateDialog').style.display='none';">キャンセル</button>
+                            </div>
+                        </form>
+                </div>
+            </div> 
+    </body>

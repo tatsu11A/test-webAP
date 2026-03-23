@@ -3,7 +3,7 @@ package jp.gihyo.pro.java.tasklist.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
+import jp.gihyo.pro.java.tasklist.entity.TaskListDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

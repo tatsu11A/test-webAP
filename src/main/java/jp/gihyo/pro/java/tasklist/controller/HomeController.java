@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class HomeController {
-        record TaskItem(String id, String task, String deadline, boolean done) {
+        public record TaskItem(String id, String task, String deadline, boolean done) {
             // タスクアイテム情報を複数保持するレコードクラス
     }
     private List<TaskItem> taskItems = new ArrayList<>();
